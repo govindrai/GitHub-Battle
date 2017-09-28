@@ -1,3 +1,27 @@
 body {
-  background: green;
+  font-family: Helvetica;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.languages {
+  display: flex;
+  justify-content: center;
+}
+
+.languages li {
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
 }
