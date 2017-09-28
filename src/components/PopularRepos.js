@@ -5,7 +5,7 @@ import api from "../utils/api";
 function LanguagesNavigation({ selectedLanguage, updateLanguage }) {
   const languages = ["All", "JavaScript", "Ruby", "Python", "Java", "CSS"];
   return (
-    <ul className="language">
+    <ul className="languages">
       {languages.map(language => (
         <li
           style={language === selectedLanguage ? { color: "red" } : null}
@@ -52,7 +52,28 @@ export default class PopularRepos extends React.Component {
           selectedLanguage={this.state.selectedLanguage}
           updateLanguage={this.updateLanguage}
         />
+        <ReposGrid repos={this.state.repos} />
       </div>
     );
+  }
+}
+
+function ReposGrid({ repos }) {
+  if (repos) {
+    return (
+      <div className="repos-list">
+        {repos.map(repo => {
+          return (
+            <div key={repo.id} className="repo">
+              <img className="repo-image" src={repo.owner.avatar_url} />
+              <div className="repo-name">{repo.name}</div>
+              <div className="repo-stars">{repo.stargazers_count}</div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  } else {
+    return "LOADING";
   }
 }

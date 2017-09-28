@@ -25,3 +25,18 @@ ul {
 li {
   list-style-type: none;
 }
+
+.repos-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.repo {
+  width: 200px;
+  margin: 20px;
+}
+
+.repo-image {
+  max-width: 100%;
+}
