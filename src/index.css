@@ -2,41 +2,77 @@ body {
   font-family: Helvetica;
 }
 
+a {
+  color: red;
+  text-decoration: none;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1200px;
 }
 
 .languages {
-  display: flex;
   justify-content: center;
 }
 
-.languages li {
-  cursor: pointer;
-  font-weight: bold;
-  margin: 10px;
-}
-
 ul {
+  display: flex;
   padding: 0;
 }
 
 li {
+  cursor: pointer;
+  font-weight: bold;
   list-style-type: none;
+  margin: 10px;
 }
 
 .repos-list {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .repo {
-  width: 200px;
   margin: 20px;
+  text-align: center;
+  width: 200px;
 }
 
 .repo-image {
+  border-radius: 5px;
+  margin: 20px auto;
   max-width: 100%;
+}
+
+.repo div {
+  margin-bottom: 5px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  height: 50px;
+  margin: 25px auto;
+}
+
+button {
+  background: black;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  height: 50px;
+}
+
+.active {
+  font-weight: bold;
 }

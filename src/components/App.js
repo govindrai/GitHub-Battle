@@ -1,11 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import Nav from "./Nav";
+import Home from "./Home";
+import Battle from "./Battle";
 import PopularRepos from "./PopularRepos";
 
 export default class App extends React.Component {
   render() {
-    return <PopularRepos />;
+    return (
+      <Router>
+        <div className="container">
+          <Nav />
+          <Route exact path="/" component={Home} />
+          <Route path="/battle" component={Battle} />
+          <Route path="/popular-repos" component={PopularRepos} />
+        </div>
+      </Router>
+    );
   }
 }
