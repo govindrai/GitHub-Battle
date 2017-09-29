@@ -1,3 +1,7 @@
+* {
+  outline: none;
+}
+
 body {
   font-family: Helvetica;
 }
@@ -71,8 +75,21 @@ button {
   border-radius: 6px;
   color: white;
   height: 50px;
+  width: 200px;
+}
+
+button:active {
+  transform: translateY(1px);
 }
 
 .active {
   font-weight: bold;
+}
+
+.home {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }

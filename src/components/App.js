@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import PropTypes from "prop-types";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Nav from "./Nav";
 import Home from "./Home";
@@ -14,9 +14,12 @@ export default class App extends React.Component {
       <Router>
         <div className="container">
           <Nav />
-          <Route exact path="/" component={Home} />
-          <Route path="/battle" component={Battle} />
-          <Route path="/popular-repos" component={PopularRepos} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/battle" component={Battle} />
+            <Route path="/popular-repos" component={PopularRepos} />
+            <Route render={() => "NOTFOUND"} />
+          </Switch>
         </div>
       </Router>
     );
