@@ -1,16 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import BattleProfile from "./BattleProfile";
 
 export default class Battle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playerOneUsername: "",
-      playerTwoUsername: "",
-      playerOneImage: null,
-      playerTwoImage: null
-    };
-  }
+  state = {
+    playerOneUsername: "",
+    playerTwoUsername: "",
+    playerOneImage: null,
+    playerTwoImage: null
+  };
 
   submitBattleForm = (id, username) => {
     return this.setState({
@@ -20,45 +19,70 @@ export default class Battle extends React.Component {
     });
   };
 
+  resetBattleForm = id => {
+    this.setState({
+      ["player" + id + "Username"]: "",
+      ["player" + id + "Image"]: null
+    });
+  };
+
   render() {
+    const { url } = this.props.match;
     const {
       playerOneUsername,
       playerTwoUsername,
       playerOneImage,
       playerTwoImage
     } = this.state;
+
     return (
       <div>
         <div className="row">
           {playerOneUsername && (
-            <BattleProfile
-              username={playerOneUsername}
-              image={playerOneImage}
-            />
-          )}
-          {playerTwoUsername && (
-            <BattleProfile
-              username={playerTwoUsername}
-              image={playerTwoImage}
-            />
+            <BattleProfile username={playerOneUsername} image={playerOneImage}>
+              <a
+                className="reset"
+                onClick={this.resetBattleForm.bind(null, "One")}
+              >
+                Reset
+              </a>
+            </BattleProfile>
           )}
           {!playerOneUsername && (
             <BattleForm id="One" submitBattleForm={this.submitBattleForm} />
+          )}
+          {playerTwoUsername && (
+            <BattleProfile username={playerTwoUsername} image={playerTwoImage}>
+              <a
+                className="reset"
+                onClick={this.resetBattleForm.bind(null, "Two")}
+              >
+                Reset
+              </a>
+            </BattleProfile>
           )}
           {!playerTwoUsername && (
             <BattleForm id="Two" submitBattleForm={this.submitBattleForm} />
           )}
         </div>
+        {playerOneUsername &&
+        playerTwoUsername && (
+          <Link
+            to={{
+              pathname: url + "/results",
+              search: `?playerOneUsername=${playerOneUsername}&playerTwoUsername=${playerTwoUsername}`
+            }}
+          >
+            <button>Battle</button>
+          </Link>
+        )}
       </div>
     );
   }
 }
 
 class BattleForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { username: "" };
-  }
+  state = { username: "" };
 
   handleFormFieldChange = e => {
     this.setState({ username: e.target.value });
@@ -66,45 +90,30 @@ class BattleForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <form
+        className="column"
+        onSubmit={this.props.submitBattleForm.bind(
+          null,
+          this.props.id,
+          this.state.username
+        )}
+      >
         <h1>Player {this.props.id}</h1>
-        <form
-          onSubmit={this.props.submitBattleForm.bind(
-            null,
-            this.props.id,
-            this.state.username
-          )}
-        >
-          <input
-            type="text"
-            placeholder="GitHub username"
-            onChange={this.handleFormFieldChange}
-            value={this.state.username}
-          />
-          <button type="submit" disabled={!this.state.username}>
-            Submit
-          </button>
-        </form>
-      </div>
+        <input
+          type="text"
+          placeholder="GitHub username"
+          onChange={this.handleFormFieldChange}
+          value={this.state.username}
+        />
+        <button type="submit" disabled={!this.state.username}>
+          Submit
+        </button>
+      </form>
     );
   }
-}
-
-function BattleProfile({ image, username }) {
-  return (
-    <div>
-      <img src={image} />
-      <div>{username}</div>
-    </div>
-  );
 }
 
 BattleForm.PropTypes = {
   id: PropTypes.string.isRequired,
   submitBattleForm: PropTypes.func.isRequired
-};
-
-BattleProfile.PropTypes = {
-  username: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired
 };

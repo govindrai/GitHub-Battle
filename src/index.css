@@ -9,6 +9,7 @@ body {
 a {
   color: red;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .container {
@@ -18,6 +19,7 @@ a {
 
 .languages {
   justify-content: center;
+  font-weight: bold;
 }
 
 ul {
@@ -27,7 +29,6 @@ ul {
 
 li {
   cursor: pointer;
-  font-weight: bold;
   list-style-type: none;
   margin: 10px;
 }
@@ -57,25 +58,40 @@ li {
 .row {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  text-align: center;
 }
 
-form {
+.column {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  width: 500px;
+}
+
+form h1 {
+  font-size: 30px;
+  font-weight: normal;
 }
 
 input {
-  height: 50px;
-  margin: 25px auto;
+  border-radius: 3px;
+  padding: 5px;
+  width: 80%;
+  margin: 10px auto;
+  font-size: 16px;
 }
 
 button {
+  display: block;
+  padding: 10px;
   background: black;
   border: none;
   border-radius: 6px;
   color: white;
-  height: 50px;
   width: 200px;
+  margin: 10px auto;
+  font-size: 16px;
 }
 
 button:active {
@@ -87,9 +103,28 @@ button:active {
 }
 
 .home {
-  height: 80vh;
   display: flex;
   flex-direction: column;
+  height: 80vh;
   justify-content: center;
   text-align: center;
+}
+
+.username {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.profile-image {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.reset {
+  font-size: 12px;
+}
+
+.space-list-items {
+  display: flex;
+  flex-direction: column;
 }
