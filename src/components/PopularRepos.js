@@ -41,7 +41,7 @@ export default class PopularRepos extends React.Component {
     this.setState({ selectedLanguage, repos: null });
 
     api
-      .fetchPopularRepos(this.state.language)
+      .fetchPopularRepos(selectedLanguage)
       .then(repos => this.setState({ repos }));
   };
 

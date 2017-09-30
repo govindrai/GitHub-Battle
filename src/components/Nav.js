@@ -5,7 +5,7 @@ export default function Nav() {
   return (
     <ul>
       <li>
-        <NavLink activeClassName="active" to="/">
+        <NavLink exact activeClassName="active" to="/">
           Home
         </NavLink>
       </li>

@@ -19,6 +19,7 @@ a {
 
 .languages {
   justify-content: center;
+  font-weight: bold;
 }
 
 ul {
@@ -28,7 +29,6 @@ ul {
 
 li {
   cursor: pointer;
-  font-weight: bold;
   list-style-type: none;
   margin: 10px;
 }
@@ -83,6 +83,8 @@ input {
 }
 
 button {
+  display: block;
+  padding: 10px;
   background: black;
   border: none;
   border-radius: 6px;
@@ -114,9 +116,15 @@ button:active {
   margin-bottom: 20px;
 }
 .profile-image {
+  max-width: 200px;
   margin-bottom: 20px;
 }
 
 .reset {
   font-size: 12px;
+}
+
+.space-list-items {
+  display: flex;
+  flex-direction: column;
 }
