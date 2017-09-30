@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import api from "../utils/api";
+import Loading from "./Loading";
 
 function LanguagesNavigation({ selectedLanguage, updateLanguage }) {
   const languages = ["All", "JavaScript", "Ruby", "Python", "Java", "CSS"];
@@ -53,7 +54,7 @@ export default class PopularRepos extends React.Component {
           updateLanguage={this.updateLanguage}
         />
         {this.state.repos && <ReposGrid repos={this.state.repos} />}
-        {!this.state.repos && "LOADING"}
+        {!this.state.repos && <Loading text="Please wait" speed={100} />}
       </div>
     );
   }
