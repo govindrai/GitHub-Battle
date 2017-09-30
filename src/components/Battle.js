@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import BattleProfile from "./BattleProfile";
 
 export default class Battle extends React.Component {
   state = {
@@ -33,27 +34,32 @@ export default class Battle extends React.Component {
       playerOneImage,
       playerTwoImage
     } = this.state;
+
     return (
       <div>
         <div className="row">
           {playerOneUsername && (
-            <BattleProfile
-              username={playerOneUsername}
-              image={playerOneImage}
-              id="One"
-              resetBattleForm={this.resetBattleForm}
-            />
+            <BattleProfile username={playerOneUsername} image={playerOneImage}>
+              <a
+                className="reset"
+                onClick={this.resetBattleForm.bind(null, "One")}
+              >
+                Reset
+              </a>
+            </BattleProfile>
           )}
           {!playerOneUsername && (
             <BattleForm id="One" submitBattleForm={this.submitBattleForm} />
           )}
           {playerTwoUsername && (
-            <BattleProfile
-              id="Two"
-              username={playerTwoUsername}
-              image={playerTwoImage}
-              resetBattleForm={this.resetBattleForm}
-            />
+            <BattleProfile username={playerTwoUsername} image={playerTwoImage}>
+              <a
+                className="reset"
+                onClick={this.resetBattleForm.bind(null, "Two")}
+              >
+                Reset
+              </a>
+            </BattleProfile>
           )}
           {!playerTwoUsername && (
             <BattleForm id="Two" submitBattleForm={this.submitBattleForm} />
@@ -76,10 +82,7 @@ export default class Battle extends React.Component {
 }
 
 class BattleForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { username: "" };
-  }
+  state = { username: "" };
 
   handleFormFieldChange = e => {
     this.setState({ username: e.target.value });
@@ -110,28 +113,7 @@ class BattleForm extends React.Component {
   }
 }
 
-function BattleProfile({ image, username, id, resetBattleForm }) {
-  return (
-    <div>
-      <div className="column">
-        <img className="profile-image" src={image} />
-        <div className="username">@{username}</div>
-      </div>
-      <a className="reset" onClick={resetBattleForm.bind(null, id)}>
-        Reset
-      </a>
-    </div>
-  );
-}
-
 BattleForm.PropTypes = {
   id: PropTypes.string.isRequired,
   submitBattleForm: PropTypes.func.isRequired
-};
-
-BattleProfile.PropTypes = {
-  username: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  resetBattleForm: PropTypes.func.isRequired
 };
