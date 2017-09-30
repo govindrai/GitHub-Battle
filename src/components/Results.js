@@ -4,6 +4,7 @@ import queryString from "query-string";
 import api from "../utils/api";
 import { Link } from "react-router-dom";
 import BattleProfile from "./BattleProfile";
+import Loading from "./Loading";
 
 export default class Results extends React.Component {
   state = {
@@ -40,7 +41,7 @@ export default class Results extends React.Component {
     const { error, winner, loser, loading } = this.state;
 
     if (loading === true) {
-      return <p>Loading!</p>;
+      return <Loading />;
     }
 
     if (error) {
